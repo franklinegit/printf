@@ -1,7 +1,7 @@
 #include "main.h"
 int _printf(const char *format, ...)
 {
-	int i, num = 0, len = 0;
+	int i, d, num = 0, len = 0;
 	char c, *s;
 	va_list mylist;
 	va_start(mylist, format);
@@ -31,6 +31,13 @@ int _printf(const char *format, ...)
 			{
 				i = (int)va_arg(mylist, int);
 				printf("%d", i);
+				num++;
+			}
+			/* check decimal specifier */
+			else if (*format == 'd')
+			{
+				d = (int)va_arg(mylist, int);
+				printf("%d", d);
 				num++;
 			}
 			/* checks if the next character is a string */
