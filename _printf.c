@@ -11,7 +11,7 @@
 int _printf(const char *format, ...)
 {
 	int d, len = 0, ncp = 0;
-	unsigned int o, u, x, X;
+	unsigned int o, u, x, X, b;
 	char c;
 	va_list args;
 	char str[10];
@@ -86,6 +86,12 @@ int _printf(const char *format, ...)
 						{
 							X = va_arg(args, int);
 							printHex(X);
+							break;
+						}
+					case 'b':
+						{
+							b = va_arg(args, unsigned int);
+							_binary(b);
 							break;
 						}
 				}
