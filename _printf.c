@@ -66,25 +66,25 @@ int _printf(const char *format, ...)
 						}
 					case 'u':
 						{
-							u = va_arg(args, int);
+							u = va_arg(args, unsigned int);
 							print_unsigned_decimal(u);
 							break;
 						}
 					case 'o':
 						{
-							o = va_arg(args, int);
+							o = va_arg(args, unsigned int);
 							print_octal(o);
 							break;
 						}
 					case 'x':
 						{
-							x = va_arg(args, int);
+							x = va_arg(args, unsigned int);
 							print_hex(x);
 							break;
 						}
 					case 'X':
 						{
-							X = va_arg(args, int);
+							X = va_arg(args, unsigned int);
 							printHex(X);
 							break;
 						}
