@@ -1,19 +1,26 @@
 #include "main.h"
+
 /**
  * print_int - prints integer
  * @num: input
+ * Return: count
  */
 
-void print_int(int num)
+int print_int(int n)
 {
-	if (num < 0)
+	int count = 0;
+
+	if (n < 0)
 	{
 		_putchar('-');
-		num = -num;
+		count++;
+		n = -n;
 	}
-	if (num / 10)
+	if (n >= 10)
 	{
-		print_int(num / 10);
+		count += print_int(n / 10);
 	}
-	_putchar(num % 10 + '0');
+	_putchar(n % 10 + '0');
+	++count;
+	return (count);
 }

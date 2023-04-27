@@ -1,14 +1,17 @@
 #include "main.h"
+
 /**
-  * print_unsigned_decimal - prints digits in decimal format
-  * @num: input that will be printed
-  * Return: void
-  */
-void print_unsigned_decimal(unsigned int num)
+ * print_unsigned_decimal - prints digits in decimal format
+ * @u: input
+ * Return: count
+ */
+
+int print_unsigned_int(unsigned int u)
 {
-	if (num >= 10)
-	{
-		print_unsigned_decimal(num / 10);
-	}
-	_putchar((num % 10) + '0');
+	int count = 0;
+	if (u >= 10)
+		count += print_unsigned_int(u / 10);
+	_putchar((u % 10) + '0');
+	++count;
+	return (count);
 }

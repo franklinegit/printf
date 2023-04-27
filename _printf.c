@@ -1,108 +1,86 @@
 #include "main.h"
-#include <stdarg.h>
-#include <stdio.h>
-
 /**
- * _printf - prints input
- * @format: input
- * Return: number of characters printed
+ * _printf - prints formatted output
+ * @format: format string of specifiers
+ * Return: count
  */
 
 int _printf(const char *format, ...)
 {
-	int d, len = 0, ncp = 0;
-	unsigned int o, u, x, X, b;
-	char c;
 	va_list args;
-	char str[10];
+	int c, n, count = 0;
+	unsigned int u, o, h, b;
+	const char *s, *p = format;
 
 	va_start(args, format);
-	if (format)
+	while (*p)
 	{
-		while ((c = *format++) != '\0')
+		if (*p == '%')
 		{
-			if (c == '%')
+			++p;
+			if (*p == '\0')
+				break;
+			if (*p == '%')
 			{
-				switch (*format++)
+				_putchar('%');
+				count++;
+			}
+			else if (*p == 'c')
+			{
+				c = va_arg(args, int);
+				_putchar(c);
+				count++;
+			}
+			else if (*p == 's')
+			{
+				s = va_arg(args, const char *);
+				if (s == NULL)
+					s = "(null)";
+				while (*s != '\0')
 				{
-					case 'c':
-						{
-						char arg = va_arg(args, int);
-
-							_putchar(arg);
-							ncp++;
-							break;
-						}
-					case 's':
-						{
-							char *arg = va_arg(args, char *);
-							char *ptr = arg;
-
-							while (*ptr != '\0')
-							{
-								len++;
-								sprintf(str, "%d", len);
-								ptr++;
-							}
-							while (*arg != '\0')
-							{
-								_putchar(*arg++);
-								ncp++;
-							}
-							break;
-						}
-					case '%':
-						{
-							_putchar('%');
-							ncp++;
-							break;
-						}
-					case 'd':
-					case 'i':
-						{
-							d = va_arg(args, int);
-							print_int(d);
-							break;
-						}
-					case 'u':
-						{
-							u = va_arg(args, unsigned int);
-							print_unsigned_decimal(u);
-							break;
-						}
-					case 'o':
-						{
-							o = va_arg(args, unsigned int);
-							print_octal(o);
-							break;
-						}
-					case 'x':
-						{
-							x = va_arg(args, unsigned int);
-							print_hex(x);
-							break;
-						}
-					case 'X':
-						{
-							X = va_arg(args, unsigned int);
-							printHex(X);
-							break;
-						}
-					case 'b':
-						{
-							b = va_arg(args, unsigned int);
-							_binary(b);
-							break;
-						}
+					_putchar(*s++);
+					count++;
 				}
+			}
+			else if (*p == 'd' || *p == 'i')
+			{
+				n = va_arg(args, int);
+				count += print_int(n);
+			}
+			else if (*p == 'u')
+			{
+				u = va_arg(args, unsigned int);
+				count += print_unsigned_int(u);
+			}
+			else if (*p == 'o')
+			{
+				o = va_arg(args, unsigned int);
+				count += print_octal(o);
+			}
+			else if (*p == 'x' || *p == 'X')
+			{
+				h = va_arg(args, unsigned int);
+				count += print_hex(h, *p == 'X');
+			}
+			else if (*p == 'b')
+			{
+				b = va_arg(args, unsigned int);
+				count += print_binary(b);
 			}
 			else
 			{
-				_putchar(c);
-				ncp++;
+				_putchar('%');
+				_putchar(*p);
+				count += 2;
 			}
 		}
+		else
+		{
+			_putchar(*p);
+			++count;
+		}
+		++p;
 	}
 	va_end(args);
-	return (ncp);
+	return (count);
 }

@@ -1,21 +1,20 @@
 #include "main.h"
+
 /**
-  * print_octal - prints octal format
-  * @num: input to be printed
-  * Return: void
-  */
-void print_octal(unsigned int num)
+ * print_octal - prints octal format
+ * @o: input
+ * Return: count
+ */
+
+int print_octal(unsigned int o)
 {
-	char octal[32];
-	int i = 0;
+	int count = 0;
 
-	do {
-		octal[i++] = num % 8 + '0';
-		num /= 8;
-	} while (num > 0);
-
-	while (--i >= 0)
+	if (o >= 8)
 	{
-		_putchar(octal[i]);
+		count += print_octal(o / 8);
 	}
+	_putchar('0' + o % 8);
+	++count;
+	return count;
 }

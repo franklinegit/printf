@@ -1,29 +1,20 @@
 #include "main.h"
+
 /**
  * print_hex - prints hexadecimal
- * @num: input
+ * @h: input
+ * @uppercase: input
+ * Return: count
  */
 
-void print_hex(unsigned int num)
+int print_hex(unsigned int h, int uppercase)
 {
-	int hex_digits[100];
-	int i = 0, j;
+	const char *digits = uppercase ? "0123456789ABCDEF" : "0123456789abcdef";
+	int count = 0;
 
-	while (num != 0)
-	{
-		hex_digits[i] = num % 16;
-		num /= 16;
-		i++;
-	}
-	for (j = i - 1; j >= 0; j--)
-	{
-		if (hex_digits[j] < 10)
-		{
-			_putchar(hex_digits[j] + '0');
-		}
-		else
-		{
-			_putchar(hex_digits[j] - 10 + 'a');
-		}
-	}
+	if (h >= 16)
+		count += print_hex(h / 16, uppercase);
+	_putchar(digits[h % 16]);
+	++count;
+	return (count);
 }
