@@ -16,5 +16,5 @@ int print_octal(unsigned int o)
 	}
 	_putchar('0' + o % 8);
 	++count;
-	return count;
+	return (count);
 }

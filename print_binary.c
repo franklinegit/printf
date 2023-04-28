@@ -9,7 +9,7 @@
 int print_binary(unsigned int num)
 {
 	int binary[32];
-	int count = 0, len =0;
+	int count = 0, len = 0;
 
 	if (num == 0)
 	{

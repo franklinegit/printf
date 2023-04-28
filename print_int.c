@@ -2,7 +2,7 @@
 
 /**
  * print_int - prints integer
- * @num: input
+ * @n: input
  * Return: count
  */
 
