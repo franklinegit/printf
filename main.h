@@ -10,7 +10,7 @@
 
 int _printf(const char *format, ...);
 int _putchar(int c);
-int print_int(int n);
+int print_int(long int n);
 int print_unsigned_int(unsigned int u);
 int print_octal(unsigned int o);
 int print_hex(unsigned int h, int uppercase);

@@ -6,7 +6,7 @@
  * Return: count
  */
 
-int print_int(int n)
+int print_int(long int n)
 {
 	int count = 0;
 

@@ -8,7 +8,8 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int c, n, count = 0;
+	int c, count = 0;
+	long int n;
 	unsigned int u, o, h, b;
 	const char *s, *p = format;
 
@@ -44,7 +45,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*p == 'd' || *p == 'i')
 			{
-				n = va_arg(args, int);
+				n = va_arg(args, long int);
 				count += print_int(n);
 			}
 			else if (*p == 'u')
